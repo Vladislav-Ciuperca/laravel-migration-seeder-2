@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time("ora_arrivo");
             $table->bigInteger("codice_treno");
             $table->integer("numero_carrozze");
-            $table->boolean("in orario");
+            $table->boolean("in_orario");
         });
     }
 
