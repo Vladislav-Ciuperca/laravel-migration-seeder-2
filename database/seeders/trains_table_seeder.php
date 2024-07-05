@@ -6,34 +6,58 @@ use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use Faker\Generator as Faker;
+
 class trains_table_seeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
-        $treno_padova_roma = new Train();
-        $treno_padova_roma->azienda = "Freccia Rossa";
-        $treno_padova_roma->stazione_partenza = 3;
-        $treno_padova_roma->stazione_arrivo = 8;
-        $treno_padova_roma->ora_partenza = 10.00;
-        $treno_padova_roma->ora_arrivo = 18.23;
-        $treno_padova_roma->codice_treno = 27375;
-        $treno_padova_roma->numero_carrozze = 15;
-        $treno_padova_roma->in_orario = 1;
-        $treno_padova_roma->save();
-        
-        $treno_padova_venezia = new Train();
-        $treno_padova_venezia->azienda = "trenitalia";
-        $treno_padova_venezia->stazione_partenza = 6;
-        $treno_padova_venezia->stazione_arrivo = 2;
-        $treno_padova_venezia->ora_partenza = 10.11;
-        $treno_padova_venezia->ora_arrivo = 11.23;
-        $treno_padova_venezia->codice_treno = 27304;
-        $treno_padova_venezia->numero_carrozze = 11;
-        $treno_padova_venezia->in_orario = 1;
-        $treno_padova_venezia->save();
+
+        for ($i = 0; $i < 12; $i++) {
+
+            $new_train = new Train();
+
+            $new_train->azienda = $faker->name();
+            $new_train->stazione_partenza = $faker->numberBetween(0, 15);
+            $new_train->stazione_arrivo = $faker->numberBetween(0, 15);
+            $new_train->ora_partenza = $faker->time();
+            $new_train->ora_arrivo = $faker->time();
+            $new_train->codice_treno =  $faker->randomNumber(5, true);
+            $new_train->numero_carrozze = $faker->numberBetween(1, 25);
+            $new_train->in_orario = 1;
+
+            $new_train->save();
+        }
+
+
+
+
+        // $new_train = new Train();
+        // $new_train->azienda = "Freccia Rossa";
+        // $new_train->stazione_partenza = 3;
+        // $new_train->stazione_arrivo = 8;
+        // $new_train->ora_partenza = 122300;
+        // $new_train->ora_arrivo = 182300;
+        // $new_train->codice_treno = 27375;
+        // $new_train->numero_carrozze = 15;
+        // $new_train->in_orario = 1;
+        // $new_train->save();
+
+        // $new_train = new Train();
+        // $new_train->azienda = "trenitalia";
+        // $new_train->stazione_partenza = 6;
+        // $new_train->stazione_arrivo = 2;
+        // $new_train->ora_partenza = 10100;
+        // $new_train->ora_arrivo = 112300;
+        // $new_train->codice_treno = 27304;
+        // $new_train->numero_carrozze = 11;
+        // $new_train->in_orario = 1;
+        // $new_train->save();
+
+
 
     }
 }
